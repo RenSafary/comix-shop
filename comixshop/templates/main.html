@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comixes</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<body>
+    <div class="display">
+        <div class="header">
+            <button>📙</button>
+            <button class="manhwa">Маньхуа</button>
+            <button class="manga">Манга</button>
+            <button class="manhua">Манхва</button>
+            <button class="search">🔍︎</button>
+        </div>
+        <div class="main">
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="search-bar">    
+        <form action="" method="post">
+            {% csrf_token %}
+            <p class="close"><b>X</b></p>
+            <label><b>Жанр:</b> <input class="genre" name"genre" type="text"/></label><br>
+            <label><b>Год выпуска:</b> <input class="year" name"year" type="text"/></label><br>
+            <label><b>Рейтинг:</b> <input class="rare" name"rare" type="text"/></label><br><br>
+            <input type="submit" value="Найти"/>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="{% static 'js/main.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/popup.js'%}"></script>
+</html>
