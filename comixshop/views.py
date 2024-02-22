@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from .models import *
 
 
 def main(request):
-    list = [i for i in range(50)]
-    return render(request, 'main.html', {'list':list})
+    book = Book.objects.all()
+    return render(request, 'main.html', 
+    {'list':list,
+    'book': book })
 
 
 def admin(request):

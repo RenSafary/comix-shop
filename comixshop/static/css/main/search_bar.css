@@ -1,0 +1,17 @@
+.search-bar{
+    position: absolute;
+    height: 100px;
+    width: 300px;
+    display: none;
+    left: 50%;
+    margin-left: -150px;
+    background-color: rgb(41, 41, 41);
+}
+
+.close{
+    position: absolute;
+    left: 100%;
+    margin-left: -20px;
+    cursor: pointer;
+    text-decoration: none;
+}
