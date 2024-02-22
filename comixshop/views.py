@@ -3,10 +3,10 @@ from .models import *
 
 
 def main(request):
-    book = Book.objects.all()
+    books = Book.objects.all()
     return render(request, 'main.html', 
     {'list':list,
-    'book': book })
+    'books': books })
 
 
 def admin(request):

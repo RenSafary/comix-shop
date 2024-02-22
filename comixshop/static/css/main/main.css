@@ -1,6 +1,7 @@
 body{
     background-color: rgb(0, 0, 0);
     color: white;
+    user-select: none;
 }
 
 .main{
@@ -12,18 +13,23 @@ body{
     padding: 20px 20px;
 }
 
-.book{
+p[class*=book]{
     margin-right: 20px;
     margin-bottom: 20px;
     border: 1px solid;
     padding: 10px;
     cursor: pointer;
+    border-radius: 20px;
 }
 
-.info{
+div[class*=info]{
     display: none;
     position: absolute;
     background-color: rgb(41, 41, 41);
     height: 200px;
     width: 200px;
+}
+
+.bye{
+    display: none;
 }

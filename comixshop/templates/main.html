@@ -21,17 +21,16 @@
         </div>
 
         <div class="main">
-            {% for i in book %}
-                <p class="book">{{i.title}}</p>
-                <div class="info">
+            {% for i in books %}
+                <p class="book{{i.id}}">{{i.title}}</p>
+                <div class="info{{i.id}}">
                     <form action="" method="post">
-                        <p class="info">
-                            {{i.type}}<br>
-                            {{i.desctiption}}<br>
-                            {{i.pages}}<br>
-                            {{i.amount}}<br>
-                            {{i.genre}}<br>
-                        </p>
+                        <p class="info_close">X</p>
+                        <p>{{i.type}}</p>
+                        <p>{{i.desctiption}}</p>
+                        <p>{{i.pages}}</p>
+                        <p>{{i.amount}}</p>
+                        <p>{{i.genre}}</p>
                     </form>
                 </div>
             {% endfor %}
