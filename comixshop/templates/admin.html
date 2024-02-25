@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form method="post">
+        {% csrf_token %}
+        <label>Логин:{{form.username}}</label><br>
+        <label>Пароль:{{form.password}}</label><br>
+        <input type="submit" value="Войти"/>
+    </form>
 </body>
 </html>
