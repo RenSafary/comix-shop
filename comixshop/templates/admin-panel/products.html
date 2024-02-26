@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Склад</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/admin-panel/products.css' %}">
+<body>
+    <table border="1" class="table">
+        <tr>
+            <th>Название</th>
+            <th>Тип</th>
+            <th>Описание</th>
+            <th>Кол-во страниц</th>
+            <th>Просмотры</th>
+            <th>Кол-во</th>
+            <th>Продажи</th>
+            <th>Жанр</th>
+        </tr>
+        {% for i in books %}
+        <tr>
+            <td>{{i.title}}</td>
+            <td>{{i.type}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.pages}}</td>
+            <td>{{i.views}}</td>
+            <td>{{i.amount}}</td>
+            <td>{{i.sales}}</td>
+            <td>{{i.genre}}</td>
+            
+            <td>
+                <form action="/products/remove/" method="POST">
+                    {% csrf_token %}
+                    <button>X</button>
+                    <input type="hidden" value="{{i.id}}" name="id_book"/>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button class="redirect">На главную</button>
+</body>
+<script type="text/javascript" src="{% static 'js/admin-panel/products.js' %}"></script>
+</html>

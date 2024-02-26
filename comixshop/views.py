@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views import View
 
 from .models import *
 from .forms import LoginForm
@@ -13,7 +14,7 @@ def main(request):
     'books': books })
 
 
-def admin(request):
+def auth(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -28,3 +29,16 @@ def admin(request):
     else:
         form = LoginForm()
     return render(request, 'admin-panel/auth.html', {'form': form})
+
+
+class Products(View):
+    def get(self, request):
+        books = Book.objects.all()
+        return render(request, 'admin-panel/products.html', {'books': books})
+    
+    def post(self, request):
+        # delete
+        if request.method == "POST":
+            id_book = request.POST['id_book']
+            Book.objects.filter(id=id_book).delete()
+        return redirect("/products/")
