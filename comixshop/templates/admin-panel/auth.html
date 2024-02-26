@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/admin-panel/auth.css' %}">
+<body>
+    <div class="main">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <p>Логин</p>
+            {{form.username}}
+            <p>Пароль</p>
+            {{form.password}}
+            <input type="submit" value="Войти" class="button"/>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="{% static 'js/admin-panel/auth.js'%}"></script>
+</html>
