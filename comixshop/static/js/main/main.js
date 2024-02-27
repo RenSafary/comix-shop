@@ -21,4 +21,8 @@ $(document).ready(function(){
         $(".manhwa").animate({opacity: 1.0});
         $(".manga").animate({opacity: 1.0});
     });
+
+    $(".products redirect").click(function(){
+        window.location.href = "/products/"; // it doesn't work
+    });
 });

@@ -6,6 +6,10 @@
     <title>Добавление товаров</title>
 </head>
 <body>
-    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image"/>
+        <button>Send</button>
+    </form>
 </body>
 </html>

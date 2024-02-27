@@ -6,8 +6,8 @@ class Genres(models.Model):
     title = models.CharField(max_length=250)
 
 
-class Book(models.Model):
-    #image = models.ImageField()
+class Books(models.Model):
+    image = models.ImageField(upload_to="images/")
     title = models.CharField(max_length=150)
     type = models.CharField(max_length=10)
     description = models.TextField()

@@ -22,23 +22,25 @@
 
         <div class="main">
             {% for i in books %}
-                <p class="book{{i.id}}">{{i.title}}</p>
+                <button class="{{i.id}}">{{i.title}}</button>
                 <div class="info{{i.id}}">
-                    <form action="" method="post">
+                    <form method="post">
+                        {% csrf_token %}
                         <p class="info_close">X</p>
                         <p>{{i.type}}</p>
                         <p>{{i.desctiption}}</p>
                         <p>{{i.pages}}</p>
                         <p>{{i.amount}}</p>
-                        <p>{{i.genre}}</p>
+                        <p>{{i.genre.title}}</p>
                     </form>
                 </div>
             {% endfor %}
         </div>
+        <p class="products redirect">{{admin}}</p>
     </div>
 
     <div class="search-bar">    
-        <form action="" method="post">
+        <form method="post">
             {% csrf_token %}
             <p class="close"><b>X</b></p>
             <label><b>Жанр:</b> <input class="genre" name"genre" type="text"/></label><br>

@@ -1,14 +1,16 @@
 $(document).ready(function(){
-    for (let i = 0; i <= 10; i++){
-        $(".book" + i.toString()).click(function(){
-            $(".book" + i.toString()).show();
-        });
-    };
-    $(".book2").click(function(){
-        $(".info2").show();
+    var book = undefined;
+    var previous_book = undefined;
+
+    $("button").click(function(){
+        book = $(this).attr("class");
+        previous_book = book;
+
+        $(".info" + previous_book.toString()).hide();
+        $(".info" + book.toString()).show();
     });
 
-    $(".info_close").click(function(){ // если сисадмин добавит книгу, то список for уже будет неточен
-        $(".info").hide();
+    $(".info_close").click(function(){
+        $(".info" + book.toString()).hide();
     });
 });

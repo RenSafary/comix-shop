@@ -14,34 +14,56 @@
             <th>Название</th>
             <th>Тип</th>
             <th>Описание</th>
-            <th>Кол-во страниц</th>
+            <th>Страниц</th>
             <th>Просмотры</th>
             <th>Кол-во</th>
             <th>Продажи</th>
-            <th>Жанр</th>
+            <td>Жанр</td>
         </tr>
         {% for i in books %}
-        <tr>
-            <td>{{i.title}}</td>
-            <td>{{i.type}}</td>
-            <td>{{i.description}}</td>
-            <td>{{i.pages}}</td>
-            <td>{{i.views}}</td>
-            <td>{{i.amount}}</td>
-            <td>{{i.sales}}</td>
-            <td>{{i.genre}}</td>
-            
-            <td>
-                <form action="/products/remove/" method="POST">
+            <tr>
+                <td>{{i.title}}</td>
+                <td>{{i.type}}</td>
+                <td>{{i.description}}</td>
+                <td>{{i.pages}}</td>
+                <td>{{i.views}}</td>
+                <td>{{i.amount}}</td>
+                <td>{{i.sales}}</td>
+                <td>{{i.genre.title}}</td>   
+
+                <td>
+                    <form action="/products/remove/" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" name="operation" value="X"/>
+                        <input type="hidden" value="{{i.id}}" name="id_book"/>
+                    </form>
+                </td>
+            </tr>
+
+            <tr>
+                <form method="POST" action="/products/edit/">
                     {% csrf_token %}
-                    <button>X</button>
-                    <input type="hidden" value="{{i.id}}" name="id_book"/>
+                    <input type="hidden" name="old title" value="{{i.title}}"/>
+                    <td><input type="text" name="title" size="10"/></td>
+                    <td><input type="text" name="type" size="6"/></td>
+                    <td><input type="text" name="description" size="11"/></td>
+                    <td><input type="number" name="pages"/></td>
+                    <td></td>
+                    <td><input type="number" name="amount"/></td>
+                    <td></td>
+                    <td><input type="text" name="genre" size="15"/></td>
+                    <td><input type="submit" value="Изменить" name="operation"/></td>
                 </form>
-            </td>
-        </tr>
+            </tr>
         {% endfor %}
     </table>
     <button class="redirect">На главную</button>
+    <button class="logout">Выйти</button>
+    <button class="add_popup">Добавить</button>
+    <form>
+        {% csrf_token %}
+        <input type="text" name="title"/>
+    </form>
 </body>
 <script type="text/javascript" src="{% static 'js/admin-panel/products.js' %}"></script>
 </html>
