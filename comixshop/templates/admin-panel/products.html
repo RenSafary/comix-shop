@@ -22,6 +22,7 @@
         </tr>
         {% for i in books %}
             <tr>
+                <td><img src="{{i.image.url}}"></td>
                 <td>{{i.title}}</td>
                 <td>{{i.type}}</td>
                 <td>{{i.description}}</td>
@@ -44,6 +45,7 @@
                 <form method="POST" action="/products/edit/">
                     {% csrf_token %}
                     <input type="hidden" name="old title" value="{{i.title}}"/>
+                    <td></td>
                     <td><input type="text" name="title" size="10"/></td>
                     <td><input type="text" name="type" size="6"/></td>
                     <td><input type="text" name="description" size="11"/></td>
@@ -59,11 +61,7 @@
     </table>
     <button class="redirect">На главную</button>
     <button class="logout">Выйти</button>
-    <button class="add_popup">Добавить</button>
-    <form>
-        {% csrf_token %}
-        <input type="text" name="title"/>
-    </form>
+    <button class="add_book">Добавить</button>
 </body>
 <script type="text/javascript" src="{% static 'js/admin-panel/products.js' %}"></script>
 </html>

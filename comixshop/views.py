@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views import View
 
 from .models import *
@@ -34,6 +34,8 @@ def auth(request):
                     return redirect("/products/") # не работает, если нажать ещё, выдает incorrect csrf token
                 else:
                     return JsonResponse({"message":"fail"})
+            else:
+                return HttpResponse("Form isn't valid")
         else:
             form = LoginForm()
     return render(request, 'admin-panel/auth.html', {'form': form})
@@ -87,6 +89,9 @@ def add(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/')
-
-    return render(request, "admin-panel/add.html")
+            return redirect('/products/add/')
+        else:
+            return HttpResponse("false")
+    else:
+        form = ImageForm()
+    return render(request, 'admin-panel/add.html', {'form': form})
