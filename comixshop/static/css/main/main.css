@@ -29,9 +29,8 @@ div[class*=info]{
     background-color: rgb(41, 41, 41);
     height: 200px;
     width: 200px;
-}
-
-/* what's this? */
-.bye{
-    display: none;
+    border: 2px solid;
+    border-radius: 6%;
+    left: 50%;
+    margin-left: -100px;
 }

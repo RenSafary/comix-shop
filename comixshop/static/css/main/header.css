@@ -3,7 +3,7 @@
     height: 40px;
 }
 
-button{
+.manga, .manhua, .manhwa, .icon, .search{
     padding: 10px 20px;
     cursor: pointer;
     text-decoration: none;

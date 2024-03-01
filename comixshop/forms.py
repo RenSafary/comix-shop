@@ -17,8 +17,12 @@ class ImageForm(forms.ModelForm):
             'type': 'Тип',
             'description': 'Описание',
             'pages': 'Страниц',
-            'view': 'Просмотров',
+            'views': 'Просмотров',
             'amount': 'Кол-во (шт.)',
             'sales': 'Продаж',
             'genre': 'Жанр',
         }
+
+    def __init__(self, *args, **kwargs): # не работает так
+        super().__init__(*args, **kwargs)
+        self.fields['genre'].queryset = Genres.objects.all()

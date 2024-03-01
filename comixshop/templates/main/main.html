@@ -13,11 +13,11 @@
 <body>
     <div class="display">
         <div class="header">
-            <button>📙</button>
-            <button class="manhwa">Маньхуа</button>
-            <button class="manga">Манга</button>
-            <button class="manhua">Манхва</button>
-            <button class="search">🔍︎</button>
+            <input type="submit" class="icon" value="📙">
+            <input type="submit" class="manhwa" value="Манхва">
+            <input type="submit" class="manga" value="Манга">
+            <input type="submit" class="manhua" value="Маньхуа">
+            <input type="submit" class="search" value="🔍︎">
         </div>
 
         <div class="main">
@@ -26,12 +26,12 @@
                 <div class="info{{i.id}}">
                     <form method="post">
                         {% csrf_token %}
-                        <p class="info_close">X</p>
-                        <p>{{i.type}}</p>
-                        <p>{{i.desctiption}}</p>
-                        <p>{{i.pages}}</p>
-                        <p>{{i.amount}}</p>
-                        <p>{{i.genre.title}}</p>
+                        <p class="info_close"></p>
+                        <p class="info-text">{{i.type}}</p>
+                        <p class="info-text">{{i.desctiption}}</p>
+                        <p class="info-text">{{i.pages}}</p>
+                        <p class="info-text">{{i.amount}}</p>
+                        <p class="info-text">{{i.genre.title}}</p>
                     </form>
                 </div>
             {% endfor %}
