@@ -9,46 +9,45 @@
 </head>
 <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
 <link rel="stylesheet" href="{% static 'css/main/header.css' %}">
-<link rel="stylesheet" href="{% static 'css/main/search_bar.css' %}">
 <body>
     <div class="display">
         <div class="header">
             <input type="submit" class="icon" value="📙">
-            <input type="submit" class="manhwa" value="Манхва">
-            <input type="submit" class="manga" value="Манга">
-            <input type="submit" class="manhua" value="Маньхуа">
-            <input type="submit" class="search" value="🔍︎">
+            <input type="submit" class="name" value="COMIX-ES">
+            <form method="POST" class="find_form"> <!-- съезжает строка изза формы -->
+                {% csrf_token %}
+                <input type="text" class="find" name="find" placeholder="Поиск...">
+                <input type="submit" class="search" value="🔍︎">
+            </form>
         </div>
 
         <div class="main">
-            {% for i in books %}
-                <button class="{{i.id}}">{{i.title}}</button>
-                <div class="info{{i.id}}">
-                    <form method="post">
-                        {% csrf_token %}
-                        <p class="info_close"></p>
-                        <p class="info-text">{{i.type}}</p>
-                        <p class="info-text">{{i.desctiption}}</p>
-                        <p class="info-text">{{i.pages}}</p>
-                        <p class="info-text">{{i.amount}}</p>
-                        <p class="info-text">{{i.genre.title}}</p>
-                    </form>
-                </div>
-            {% endfor %}
+            {% if books %}
+                {% for i in books %}
+                    <button class="{{i.id}}" style="font-size: 18px">
+                        <img src="{{i.image.url}}" width="105px" height="170px"><br>
+                        <b>{{i.title}}</b>
+                    </button>
+                    <div class="info{{i.id}}">
+                        <form method="post">
+                            {% csrf_token %}
+                            <p class="info_close"></p>
+                            <p class="info-text">{{i.type}}</p>
+                            <p class="info-text">{{i.desctiption}}</p>
+                            <p class="info-text">{{i.pages}}</p>
+                            <p class="info-text">{{i.amount}}</p>
+                            <p class="info-text">{{i.genre.title}}</p>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <h1>По вашему запросу ничего не найдено..</h1>
+            {% endif %}
         </div>
         <p class="products redirect">{{admin}}</p>
     </div>
 
-    <div class="search-bar">    
-        <form method="post">
-            {% csrf_token %}
-            <p class="close"><b>X</b></p>
-            <label><b>Жанр:</b> <input class="genre" name"genre" type="text"/></label><br>
-            <label><b>Год выпуска:</b> <input class="year" name"year" type="text"/></label><br>
-            <label><b>Рейтинг:</b> <input class="rare" name"rare" type="text"/></label><br><br>
-            <input type="submit" value="Найти"/>
-        </form>
-    </div>
+    <div class="search-bar"></div>
 </body>
 <script type="text/javascript" src="{% static 'js/main/main.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/main/popup.js'%}"></script>

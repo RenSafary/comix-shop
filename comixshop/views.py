@@ -7,16 +7,39 @@ from .models import *
 from .forms import LoginForm, ImageForm
 
 
-def main(request):
-    books = Books.objects.all()
+class Main(View):
+    def post(self, request):
+        admin = None
+        if request.user.is_authenticated:
+            admin = request.user.username
+        
+        if request.method == "POST":
+            title = request.POST['find']
 
-    admin = None
-    if request.user.is_authenticated:
-        admin = request.user.username
-    return render(request, 'main/main.html', 
-    {'list': list,
-    'books': books,
-    'admin': admin})
+            title = title.lower()
+            re_title = ""
+            for i in title:
+                if i != " " or i != ":" or i != "-" or i != "." or i != ",":
+                    re_title = re_title + i
+            re_title = re_title[0].upper() + re_title[1:]
+            try:
+                books = Books.objects.filter(title=re_title)
+            except:
+                books = None
+
+        return render(request, 'main/main.html', 
+        {'books': books,
+        'admin': admin})
+
+    def get(self, request):
+        books = Books.objects.all()
+
+        admin = None
+        if request.user.is_authenticated:
+            admin = request.user.username
+        return render(request, 'main/main.html', 
+        {'books': books,
+        'admin': admin})
 
 
 def auth(request):

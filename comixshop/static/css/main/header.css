@@ -1,9 +1,10 @@
 .header {
     display: flex;
     height: 40px;
+    right: 50%;
 }
 
-.manga, .manhua, .manhwa, .icon, .search{
+.find, .icon, .search, .name{
     padding: 10px 20px;
     cursor: pointer;
     text-decoration: none;
@@ -14,6 +15,6 @@
     background-color: rgb(41, 41, 41);
 }
 
-.manhwa, .manga, .manhua {
-    width: 33.33%
+.find {
+    width: 25%
 }

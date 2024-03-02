@@ -34,3 +34,18 @@ div[class*=info]{
     left: 50%;
     margin-left: -100px;
 }
+
+.info_close{
+    position: fixed;
+    margin-left: 175px;
+    margin-top: -5px;
+    border: 1px solid;
+    border-radius: 100%;
+    background-color: white;
+    height: 10px;
+    width: 10px;
+}
+
+.info-text{
+    margin-left: 70px;
+}
