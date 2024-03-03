@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse, HttpResponse
 from django.views import View
+from django.db.models import Q
 
 from .models import *
 from .forms import LoginForm, ImageForm
@@ -9,21 +10,19 @@ from .forms import LoginForm, ImageForm
 
 class Main(View):
     def post(self, request):
+        # after the request
         admin = None
         if request.user.is_authenticated:
             admin = request.user.username
         
+        # не доработан масштабный поиск
         if request.method == "POST":
             title = request.POST['find']
 
             title = title.lower()
-            re_title = ""
-            for i in title:
-                if i != " " or i != ":" or i != "-" or i != "." or i != ",":
-                    re_title = re_title + i
-            re_title = re_title[0].upper() + re_title[1:]
+            title = title[0].upper() + title[1:]
             try:
-                books = Books.objects.filter(title=re_title)
+                books = Books.objects.filter(title=title)
             except:
                 books = None
 
@@ -32,6 +31,7 @@ class Main(View):
         'admin': admin})
 
     def get(self, request):
+        # before the request
         books = Books.objects.all()
 
         admin = None
@@ -54,7 +54,7 @@ def auth(request):
 
                 if user is not None: # user.is_active() не нужно ура
                     login(request, user)
-                    return redirect("/products/") # не работает, если нажать ещё, выдает incorrect csrf token
+                    return redirect("/books/") # не работает, если нажать ещё, выдает incorrect csrf token
                 else:
                     return JsonResponse({"message":"fail"})
             else:
@@ -69,7 +69,7 @@ def logout_(request):
     return redirect("/")
 
 
-class Products(View):
+class Book(View):
     def get(self, request):
         if request.user.is_authenticated:
             admin = request.user.username
@@ -83,38 +83,46 @@ class Products(View):
             books = Books.objects.filter(type=type)
         else: 
             return redirect("/auth/")
-        return render(request, 'admin-panel/products.html', {'books': books})
+        return render(request, 'admin-panel/books.html', {'books': books})
     
     def post(self, request):
         if request.method == "POST":
             operation = request.POST.get('operation')
             if operation == "Изменить":
                 # edit
-                old_title = request.POST['old title']
                 title = request.POST['title']
-                type = request.POST['type']
+                volume = request.POST['volume']
                 description = request.POST['description']
                 pages = request.POST['pages']
                 amount = request.POST['amount']
-                #genre = request.POST['genre']
+                genre = request.POST['genre']
 
-                Books.objects.filter(title=old_title).update(title=title,
-                type=type, description=description, pages=pages, amount=amount)              
+                print(title, volume, description, pages, amount, genre)
+                books = Books.objects.filter(Q(title=title) | Q(volume=volume) | Q(description=description) | Q(pages=pages) | Q(amount=amount) | Q(genre=genre))    
+                books.update(title=title, volume=volume, description=description, pages=pages, amount=amount, genre=genre)          
             else: 
                 # delete
                 id_book = request.POST['id_book']
                 Books.objects.filter(id=id_book).delete()
-        return redirect("/products/")
+        return redirect("/books/")
     
 
 def add(request):
-    if request.method == "POST":
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/products/add/')
+    if request.user.is_authenticated:
+        admin = request.user.username
+        if request.method == "POST":
+            form = ImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                book = form.save(commit=False)
+                if admin[-1] == "1": book.type = "Манга"
+                elif admin[-1] == "2": book.type = "Манхва"
+                elif admin[-1] == "3": book.type = "Маньхуа"
+                book.save()
+                return redirect('/books/add/')
+            else:
+                return HttpResponse("false")
         else:
-            return HttpResponse("false")
+            form = ImageForm()
     else:
-        form = ImageForm()
+        return redirect("/auth/")
     return render(request, 'admin-panel/add.html', {'form': form})

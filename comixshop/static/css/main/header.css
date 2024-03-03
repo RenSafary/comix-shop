@@ -8,7 +8,6 @@
     padding: 10px 20px;
     cursor: pointer;
     text-decoration: none;
-    border: 0.5px solid;
     font-size: 20px;
     color: white;
     font-weight: bold;
@@ -16,5 +15,15 @@
 }
 
 .find {
-    width: 25%
+    width: 55%;
+    margin-bottom: 50px;
+    height: 10px;
+}
+
+.icon, .name{
+    height: 44px;
+}
+
+.search{
+    height: 47px;
 }

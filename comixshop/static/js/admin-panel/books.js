@@ -8,6 +8,6 @@ $(document).ready(function(){
     });
 
     $(".add_book").click(function(){
-        window.location.href = '/products/add/'
+        window.location.href = '/books/add/'
     });
 });

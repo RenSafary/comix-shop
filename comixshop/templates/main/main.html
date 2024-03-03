@@ -9,6 +9,7 @@
 </head>
 <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
 <link rel="stylesheet" href="{% static 'css/main/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/main/popup.css' %}">
 <body>
     <div class="display">
         <div class="header">
@@ -32,11 +33,12 @@
                         <form method="post">
                             {% csrf_token %}
                             <p class="info_close"></p>
-                            <p class="info-text">{{i.type}}</p>
-                            <p class="info-text">{{i.desctiption}}</p>
-                            <p class="info-text">{{i.pages}}</p>
-                            <p class="info-text">{{i.amount}}</p>
-                            <p class="info-text">{{i.genre.title}}</p>
+                            <p class="info-text">{{i.type}}<br><b>{{i.title}}</b></p>
+                            <p class="info-text">{{i.description}}</p>
+                            <p class="info-text">Том: {{i.volume}}</p>
+                            <p class="info-text">Кол-во страниц: {{i.pages}}</p>
+                            <p class="info-text">Кол-во шт.: {{i.amount}}</p>
+                            <p class="info-text">Жанр: {{i.genre.title}}</p>
                         </form>
                     </div>
                 {% endfor %}
@@ -51,5 +53,4 @@
 </body>
 <script type="text/javascript" src="{% static 'js/main/main.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/main/popup.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/main/books.js' %}"></script>
 </html>

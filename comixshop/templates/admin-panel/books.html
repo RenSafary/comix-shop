@@ -5,32 +5,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Склад</title>
+    <title>Книги</title>
 </head>
 <link rel="stylesheet" href="{% static 'css/admin-panel/products.css' %}">
 <body>
     <table border="1" class="table">
         <tr>
+            <th>Обложка</th>
             <th>Название</th>
+            <th>Том</th>
             <th>Тип</th>
             <th>Описание</th>
             <th>Страниц</th>
-            <th>Просмотры</th>
             <th>Кол-во</th>
-            <th>Продажи</th>
-            <td>Жанр</td>
+            <td>Жанры</td>
         </tr>
         {% for i in books %}
             <tr>
                 <td><img src="{{i.image.url}}" width="75" height="130"></td>
                 <td>{{i.title}}</td>
+                <td>{{i.volume}}</td>
                 <td>{{i.type}}</td>
                 <td>{{i.description}}</td>
                 <td>{{i.pages}}</td>
-                <td>{{i.views}}</td>
                 <td>{{i.amount}}</td>
-                <td>{{i.sales}}</td>
-                <td>{{i.genre.title}}</td>   
+                <td>{{i.genre}}</td>   
 
                 <td>
                     <form action="/products/remove/" method="POST">
@@ -42,17 +41,15 @@
             </tr>
 
             <tr>
-                <form method="POST" action="/products/edit/">
-                    {% csrf_token %}
-                    <input type="hidden" name="old title" value="{{i.title}}"/>
+                <form method="POST" action="/books/edit/">
+                    {% csrf_token %} <!-- не будет работать с blank видимо-->
                     <td></td>
                     <td><input type="text" name="title" size="10"/></td>
-                    <td><input type="text" name="type" size="6"/></td>
-                    <td><input type="text" name="description" size="11"/></td>
+                    <td><input type="number" name="volume" size="5"></td>
+                    <td></td>
+                    <td><textarea name="description" rows="7" cols="50"></textarea></td>
                     <td><input type="number" name="pages"/></td>
-                    <td></td>
                     <td><input type="number" name="amount"/></td>
-                    <td></td>
                     <td><input type="text" name="genre" size="15"/></td>
                     <td><input type="submit" value="Изменить" name="operation"/></td>
                 </form>
@@ -63,5 +60,5 @@
     <button class="logout">Выйти</button>
     <button class="add_book">Добавить</button>
 </body>
-<script type="text/javascript" src="{% static 'js/admin-panel/products.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/admin-panel/books.js' %}"></script>
 </html>

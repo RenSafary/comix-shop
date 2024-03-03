@@ -3,15 +3,17 @@ $(document).ready(function(){
         window.location.href = "/";
     });
 
-    $(".products redirect").click(function(){
-        window.location.href = "/products/"; // it doesn't work because there are no padding parameters
+    $(".name").click(function(){
+        window.location.href = "/";
     });
 
-    $(".find_form").submit(function(){ // text is empty
-        if ($(".find").text() == ""){
-            alert($(".find").text());
-        }
-        event.preventDefault();
+    $(".products redirect").click(function(){
+        window.location.href = "/books/"; // it doesn't work because there are no padding parameters
+    });
 
+    $(".find_form").submit(function(){ 
+        if ($(".find").val() == ""){
+            event.preventDefault();
+        }
     });
 });
