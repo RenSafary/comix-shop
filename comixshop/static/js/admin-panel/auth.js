@@ -8,9 +8,11 @@ $(document).ready(function(){
             data: $(this).serialize(),
             dataType: 'json',
             success: function(response){
-                alert(response.message);
                 if (response.message == "fail"){
                     alert("Неверный логин или пароль.");
+                }
+                else{
+                    window.location.href = "/books/";
                 }
             },
             error: function(xhr, errmsg, err){

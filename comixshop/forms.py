@@ -15,7 +15,7 @@ class ImageForm(forms.ModelForm):
             'image': 'Изображение',
             'title': 'Название',
             'volume': 'Том',
-            'genre': 'Жанр',
+            'genre': 'Жанры',
             'description': 'Описание',
             'pages': 'Страниц',
             'amount': 'Кол-во (шт.)',

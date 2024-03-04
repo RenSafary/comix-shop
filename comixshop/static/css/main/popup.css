@@ -2,18 +2,18 @@ div[class*=info]{
     display: none;
     position: absolute;
     background-color: white;
-    width: 250px;
+    width: 350px;
     border: 1px solid;
     left: 50%;
-    margin-left: -100px;
+    margin-left: -175px;
     padding: 10px 30px;
     font-size: 17px;
 }
 
 .info_close{
     position: absolute;
-    margin-left: 250px;
-    margin-top: -10px;
+    margin-left: 355px;
+    margin-top: 0px;
     border: 1px solid;
     border-radius: 100%;
     background-color: white;
@@ -27,4 +27,8 @@ div[class*=info]{
     margin-left: 70px;
     border-bottom: 1px solid;
     color: black;
+}
+
+.products_redirect{
+    width: 48px;
 }

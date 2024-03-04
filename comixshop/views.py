@@ -11,7 +11,7 @@ from .forms import LoginForm, ImageForm
 class Main(View):
     def post(self, request):
         # after the request
-        admin = None
+        admin = "Comix-es ~"
         if request.user.is_authenticated:
             admin = request.user.username
         
@@ -25,7 +25,6 @@ class Main(View):
                 books = Books.objects.filter(title=title)
             except:
                 books = None
-
         return render(request, 'main/main.html', 
         {'books': books,
         'admin': admin})
@@ -34,7 +33,7 @@ class Main(View):
         # before the request
         books = Books.objects.all()
 
-        admin = None
+        admin = "Comix-es ~"
         if request.user.is_authenticated:
             admin = request.user.username
         return render(request, 'main/main.html', 
@@ -44,7 +43,7 @@ class Main(View):
 
 def auth(request):
     if request.user.is_authenticated:
-        return redirect("/products/")
+        return redirect("/books/")
     else:
         if request.method == "POST":
             form = LoginForm(request.POST)
@@ -54,7 +53,7 @@ def auth(request):
 
                 if user is not None: # user.is_active() не нужно ура
                     login(request, user)
-                    return redirect("/books/") # не работает, если нажать ещё, выдает incorrect csrf token
+                    return JsonResponse({"message":"success"}, status=200)
                 else:
                     return JsonResponse({"message":"fail"})
             else:
@@ -117,6 +116,7 @@ def add(request):
                 if admin[-1] == "1": book.type = "Манга"
                 elif admin[-1] == "2": book.type = "Манхва"
                 elif admin[-1] == "3": book.type = "Маньхуа"
+                book.count_viewed = 0
                 book.save()
                 return redirect('/books/add/')
             else:

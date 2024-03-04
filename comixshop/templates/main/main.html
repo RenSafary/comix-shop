@@ -27,26 +27,22 @@
                 {% for i in books %}
                     <button class="{{i.id}}" style="font-size: 18px">
                         <img src="{{i.image.url}}" width="105px" height="170px"><br>
-                        <b>{{i.title}}</b>
                     </button>
                     <div class="info{{i.id}}">
-                        <form method="post">
-                            {% csrf_token %}
-                            <p class="info_close"></p>
-                            <p class="info-text">{{i.type}}<br><b>{{i.title}}</b></p>
-                            <p class="info-text">{{i.description}}</p>
-                            <p class="info-text">Том: {{i.volume}}</p>
-                            <p class="info-text">Кол-во страниц: {{i.pages}}</p>
-                            <p class="info-text">Кол-во шт.: {{i.amount}}</p>
-                            <p class="info-text">Жанр: {{i.genre.title}}</p>
-                        </form>
+                        <p class="info_close"></p>
+                        <p class="info-text">{{i.type}}<br><b>{{i.title}}</b></p>
+                        <p class="info-text">{{i.description}}</p>
+                        <p class="info-text">Том: {{i.volume}}</p>
+                        <p class="info-text">Кол-во страниц: {{i.pages}}</p>
+                        <p class="info-text">Кол-во шт.: {{i.amount}}</p>
+                        <p class="info-text">Жанр: {{i.genre.title}}</p>
                     </div>
                 {% endfor %}
             {% else %}
             <h1>По вашему запросу ничего не найдено..</h1>
             {% endif %}
         </div>
-        <p class="products redirect">{{admin}}</p>
+        <p class="products_redirect">{{admin}}</p>
     </div>
 
     <div class="search-bar"></div>

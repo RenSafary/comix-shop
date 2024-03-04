@@ -7,8 +7,8 @@ $(document).ready(function(){
         window.location.href = "/";
     });
 
-    $(".products redirect").click(function(){
-        window.location.href = "/books/"; // it doesn't work because there are no padding parameters
+    $(".products_redirect").click(function(){
+        window.location.href = "/books/";
     });
 
     $(".find_form").submit(function(){ 

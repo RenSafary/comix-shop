@@ -10,3 +10,4 @@ class Books(models.Model):
     description = models.TextField(blank=True)
     pages = models.IntegerField()
     amount = models.IntegerField()
+    count_viewed = models.IntegerField() # delete

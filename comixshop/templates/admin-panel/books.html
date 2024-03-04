@@ -45,11 +45,11 @@
                     {% csrf_token %} <!-- не будет работать с blank видимо-->
                     <td></td>
                     <td><input type="text" name="title" size="10"/></td>
-                    <td><input type="number" name="volume" size="5"></td>
+                    <td><input type="number" name="volume" size="5" min="1"></td>
                     <td></td>
                     <td><textarea name="description" rows="7" cols="50"></textarea></td>
-                    <td><input type="number" name="pages"/></td>
-                    <td><input type="number" name="amount"/></td>
+                    <td><input type="number" name="pages" min="0"/></td>
+                    <td><input type="number" name="amount" min="0"/></td>
                     <td><input type="text" name="genre" size="15"/></td>
                     <td><input type="submit" value="Изменить" name="operation"/></td>
                 </form>
@@ -57,8 +57,8 @@
         {% endfor %}
     </table>
     <button class="redirect">На главную</button>
+    <button class="add_book">Добавить</button><br>
     <button class="logout">Выйти</button>
-    <button class="add_book">Добавить</button>
 </body>
 <script type="text/javascript" src="{% static 'js/admin-panel/books.js' %}"></script>
 </html>

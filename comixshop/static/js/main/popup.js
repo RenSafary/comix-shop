@@ -1,14 +1,14 @@
 $(document).ready(function(){
-    var book = undefined;
-    var previous_book = undefined;
+    var book = " ";
+    var previous_book = " ";
 
-    $("button").click(function(){ // it doesn't work as i wanted to
+    $("button").click(function(){
         book = $(this).attr("class");
-        previous_book = book;
-        alert(previous_book);
-
+        
         $(".info" + previous_book.toString()).hide();
         $(".info" + book.toString()).show();
+
+        previous_book = book;
     });
 
     $(".info_close").click(function(){

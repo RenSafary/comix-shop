@@ -2,3 +2,14 @@ body{
     background-color: black;
     color: white;
 }
+
+.display{
+    position: absolute;
+    right: 50%;
+    margin-right: -200px;
+    background-color: rgb(41, 41, 41);
+    padding: 20px;
+    border: 2px solid;
+    border-radius: 2%;
+    color: white;
+}
