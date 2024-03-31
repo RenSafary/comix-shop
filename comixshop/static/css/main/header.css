@@ -4,7 +4,7 @@
     right: 50%;
 }
 
-.find, .icon, .search, .name{
+.find, .icon, .search, .name, .manga, .manhua, .manhwa{
     padding: 10px 20px;
     cursor: pointer;
     text-decoration: none;
@@ -26,4 +26,11 @@
 
 .search{
     height: 47px;
+}
+
+.manga, .manhua, .manhwa{
+    margin-bottom: 50px;
+    height: 25px;
+    border: 1px solid;
+    border-color: gray;
 }

@@ -16,18 +16,9 @@ class Main(View):
             admin = request.user.username
         
         # не доработан масштабный поиск
-        if request.method == "POST":
-            title = request.POST['find']
-
-            title = title.lower()
-            title = title[0].upper() + title[1:]
-            try:
-                books = Books.objects.filter(title=title)
-            except:
-                books = None
+        
         return render(request, 'main/main.html', 
-        {'books': books,
-        'admin': admin})
+        {'admin': admin})
 
     def get(self, request):
         # before the request
@@ -39,6 +30,46 @@ class Main(View):
         return render(request, 'main/main.html', 
         {'books': books,
         'admin': admin})
+    
+
+def manga(request):
+    books = Books.objects.filter(type="Манга")
+    if request.method == "POST":
+        title = request.POST['find']
+
+        title = title.lower()
+        title = title[0].upper() + title[1:]
+        try:
+            books = Books.objects.filter(title=title, type="Манга")
+        except:
+            books = None
+    return render(request, "main/pages/manga.html", {'books':books})
+
+def manhwa(request):
+    books = Books.objects.filter(type="Манхва")
+    if request.method == "POST":
+        title = request.POST['find']
+
+        title = title.lower()
+        title = title[0].upper() + title[1:]
+        try:
+            books = Books.objects.filter(title=title, type="Манхва")
+        except:
+            books = None
+    return render(request, "main/pages/manhwa.html", {'books':books})
+
+def manhua(request):
+    books = Books.objects.filter(type="Манхва")
+    if request.method == "POST":
+        title = request.POST['find']
+
+        title = title.lower()
+        title = title[0].upper() + title[1:]
+        try:
+            books = Books.objects.filter(title=title, type="Маньхуа")
+        except:
+            books = None
+    return render(request, "main/pages/manhua.html", {'books':books})
 
 
 def auth(request):

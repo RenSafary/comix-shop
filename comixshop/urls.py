@@ -4,6 +4,9 @@ from .views import *
 
 urlpatterns = [
     path('', Main.as_view(), name="main"),
+    path("manga/", manga),
+    path("manhwa/", manhwa),
+    path("manhua/", manhua),
     path('auth/', auth),
     path("books/", Book.as_view(), name="products"),
     path("books/remove/", Book.as_view(), name="delete"),
